@@ -11,8 +11,13 @@ import CombinedContext from 'context/CombinedContext'
 describe('Test API service', () => {
   
   test('useGetTelematicData hook standalone', () => {
-    const { result } = renderHook(() => useGetTelematicData(), { wrapper: CombinedContext })
+    const { result } = renderHook(() => useGetTelematicData({filters: { showOnlyAlerts: false }}), { wrapper: CombinedContext })
     expect(result.current.length).toBe(8)
+  })
+  
+  test('filtered useGetTelematicData hook standalone', () => {
+    const { result } = renderHook(() => useGetTelematicData({filters: { showOnlyAlerts: true }}), { wrapper: CombinedContext })
+    expect(result.current.length).toBe(5)
   })
   
   test('useGetTelematicData hook integration', () => {

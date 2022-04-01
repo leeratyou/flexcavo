@@ -13,6 +13,6 @@ const StyledSpace = styled('div')<Props>`
   flex: ${p => (p.grow ? 1 : 0)} 0 auto;
 `
 
-const Space: FC<Props> = ({ width= 1, height = 1, grow = false, ...props }) => <StyledSpace width={width} height={height} grow={grow} {...props} />
+const Space: FC<Props> = ({ width= 1, height = 1, grow = false, ...props }) => <StyledSpace width={width} height={height} grow={grow || undefined} {...props} />
 
 export default Space

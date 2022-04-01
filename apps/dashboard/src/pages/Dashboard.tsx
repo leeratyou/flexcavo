@@ -51,13 +51,12 @@ const columns: GridColDef[] = [
     flex: 0.25,
     valueGetter: (row: GridValueGetterParams<TelematicRecord['FuelUsed']>) => `${row.value.FuelConsumed} ${row.value.FuelUnits}`
   },
-  // @ts-ignore
   {
+    field: 'CumulativeIdleHours',
     headerName: 'Idle Ratio',
     flex: 0.25,
     align: 'center',
-    renderCell: (row: GridRenderCellParams<TelematicRecord>) => <IdleRatio {...row} />,
-    valueGetter: (row: GridValueGetterParams<TelematicRecord['FuelRemaining']>) => row
+    renderCell: (row: GridRenderCellParams<TelematicRecord>) => <IdleRatio {...row} />
   },
   {
     field: 'FuelRemaining',
@@ -90,8 +89,7 @@ const Dashboard: FC<Props> = () => {
           autoHeight
           rows={rows}
           columns={columns}
-          // @ts-ignore
-          getRowId={(row: GridRowModel<TelematicRecord>) => row.EquipmentHeader.SerialNumber}
+          getRowId={(row: any) => row.EquipmentHeader.SerialNumber}
         />
       </Paper>
     </Page>

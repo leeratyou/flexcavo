@@ -40,12 +40,12 @@ const NotificationDrawer: FC<Props> = () => {
       </Box>
       <List>
         {rows.map((record) => (
-          <Fragment>
+          <Fragment key={record.EquipmentHeader.SerialNumber}>
             <ListItem>
               <ListItemText primary={record.EquipmentHeader.Model } secondary={record.EquipmentHeader.SerialNumber} />
             </ListItem>
             {Object.entries(record.Alerts).map(([name, alert]) => (
-              <ListItemButton sx={{ pl: 4 }}>
+              <ListItemButton sx={{ pl: 4 }} key={alert.reason}>
                   <ListItemIcon>
                     <AlertIcon />
                   </ListItemIcon>

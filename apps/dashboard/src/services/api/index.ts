@@ -1,63 +1,15 @@
-import { ApolloClient, gql, InMemoryCache, useQuery, makeVar, useReactiveVar } from '@apollo/client'
+import { useQuery, makeVar } from '@apollo/client'
 
 import { TelematicRecord, TelematicRecordExtended } from 'types/models'
 import { telematicData } from 'fixtures/telematicDate'
-import { IConfig, useConfigContext } from 'context/ConfigProvider'
+import { useConfigContext } from 'context/ConfigProvider'
 import isWeekend from 'date-fns/isWeekend'
-
-const client = new ApolloClient({
-  uri: 'http://localhost:8080/graphql',
-  cache: new InMemoryCache()
-})
+import { GET_DATA } from 'services/api/gql'
+import { TelematicThresholds } from 'services/api/types'
 
 // TODO: we can calculate alerts on BE and enrich data with it
 // OR
 // TODO: we can compute alerts on @client local-only fields
-export const GET_DATA = gql`
-  query {
-    TelematicRecords {
-      EquipmentHeader {
-        OEMName
-        Model
-        SerialNumber
-        SnapshotTime
-      }
-      Location {
-        Latitude
-        Longitude
-        Altitude
-        AltitudeUnits
-      }
-      CumulativeIdleHours {
-        Hour
-        
-        # We can calculate it based on CumulativeIdleHours and CumulativeOperatingHours
-        IdleRatio @client
-        Alert @client
-      }
-      CumulativeOperatingHours {
-        Hour
-      }
-      Distance {
-        OdometerUnits
-        Odometer
-      }
-      EngineStatus {
-        Running
-      }
-      FuelUsed {
-        FuelUnits
-        FuelConsumed
-      }
-      FuelRemaining {
-        Percent
-      }
-    }
-  }
-`
-
-type TelematicThresholds = IConfig['telematicData']['thresholds']
-
 function addAlerts(record: TelematicRecord, thresholds: TelematicThresholds) {
   (record as TelematicRecordExtended).Alerts = {}
   if ((record.CumulativeOperatingHours.Hour / record.CumulativeIdleHours.Hour) < thresholds.IdleRatio) {
@@ -101,7 +53,7 @@ export const getDataFilters = makeVar<IGetDataFilters>({
 function enrichData(data: TelematicRecord[], filters: IGetDataFilters, thresholds: TelematicThresholds) {
   return data
     .map(record => addAlerts(record, thresholds))
-    .filter(record => applyGetDataFilters(record, filters))
+    .filter(record => filters ? applyGetDataFilters(record, filters) : true)
 }
 
 // TODO we can use reactive vars to track global states
@@ -116,5 +68,3 @@ export function useGetTelematicData({ filters }: { filters: IGetDataFilters }) {
   const enrichedData = enrichData(telematicData, filters, config.telematicData.thresholds)
   return enrichedData
 }
-
-export default client

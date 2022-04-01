@@ -1,6 +1,10 @@
 import React, { FC } from 'react'
-import client from 'services/api'
-import { ApolloProvider } from '@apollo/client'
+import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client'
+
+const client = new ApolloClient({
+  uri: 'http://localhost:8080/graphql',
+  cache: new InMemoryCache()
+})
 
 interface Props {}
 
