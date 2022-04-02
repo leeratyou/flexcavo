@@ -55,7 +55,7 @@ const columns: GridColDef[] = [
     headerName: 'Idle Ratio',
     flex: 0.25,
     align: 'center',
-    renderCell: (row: GridRenderCellParams<TelematicRecord>) => <IdleRatio {...row} />
+    renderCell: (row: GridRenderCellParams<TelematicRecordExtended>) => <IdleRatio {...row} />
   },
   {
     field: 'FuelRemaining',

@@ -1,20 +1,11 @@
 import React, { FC, Fragment } from 'react'
-import { Collapse, Divider, Drawer, List, ListItem, ListItemButton, ListItemIcon, ListItemText } from '@mui/material'
+import { Divider, Drawer, List, ListItem, ListItemButton, ListItemIcon, ListItemText } from '@mui/material'
 import { useReactiveVar } from '@apollo/client'
 import { showDrawer } from 'store'
 import { useGetTelematicData } from 'services/api'
-import { styled } from '@mui/material/styles'
-import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline'
 import Typography from '@mui/material/Typography'
-import Space from 'ui/Space'
 import Box from '@mui/material/Box'
-import { StarBorder } from '@mui/icons-material'
-
-const AlertIcon = styled(ErrorOutlineIcon)(({ theme }) => ({
-  color: theme.palette.error.main,
-  fontSize: '1.5rem',
-  marginRight: '0.5rem'
-}))
+import AlertIcon from 'ui/icons/Alert'
 
 interface Props {}
 

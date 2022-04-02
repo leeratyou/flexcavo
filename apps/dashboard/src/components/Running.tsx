@@ -8,6 +8,7 @@ import { TelematicRecordExtended } from 'types/models'
 
 import AlertIcon from 'ui/icons/Alert'
 import NormalIcon from 'ui/icons/Normal'
+import Space from 'ui/Space'
 
 const RunningContainer = styled('div')({
   display: 'flex',
@@ -26,6 +27,7 @@ const Running = ({ row }: GridRenderCellParams<TelematicRecordExtended>) => {
           ? <AlertIcon />
           : <NormalIcon />
         }
+        <Space width={0.5} />
         <Typography>
           {isRunning
             ? 'Running'
