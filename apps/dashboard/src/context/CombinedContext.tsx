@@ -1,6 +1,6 @@
 import React, { FC } from 'react'
 import { ConfigProvider } from 'context/ConfigProvider'
-import GqlProvider from 'context/GqlProvider'
+import DataProvider from 'context/DataProvider'
 
 interface Props {
   contexts?: any[]
@@ -11,7 +11,7 @@ interface Props {
 // 3. early context is accessible from next but not vice versa
 const initContexts: any[] = [
   ConfigProvider,
-  GqlProvider
+  DataProvider
 ]
 
 const CombinedContext: FC<Props> = ({ contexts = initContexts, children }) => {

@@ -8,7 +8,7 @@ const client = new ApolloClient({
 
 interface Props {}
 
-const GqlProvider: FC<Props> = ({ children }) => {
+const DataProvider: FC<Props> = ({ children }) => {
   return (
     <ApolloProvider client={client}>
       {children}
@@ -16,4 +16,4 @@ const GqlProvider: FC<Props> = ({ children }) => {
   )
 }
 
-export default GqlProvider
+export default DataProvider

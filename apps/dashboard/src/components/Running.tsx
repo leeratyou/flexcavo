@@ -1,23 +1,13 @@
 import React, { FC } from 'react'
 import { GridRenderCellParams } from '@mui/x-data-grid'
-import { TelematicRecordExtended } from 'types/models'
 import Tooltip from '@mui/material/Tooltip'
-import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline'
 import { styled } from '@mui/material/styles'
 import Typography from '@mui/material/Typography'
-import CheckIcon from '@mui/icons-material/Check'
 
-const AlertIcon = styled(ErrorOutlineIcon)(({ theme }) => ({
-  color: theme.palette.error.main,
-  fontSize: '1.5rem',
-  marginRight: '0.5rem'
-}))
+import { TelematicRecordExtended } from 'types/models'
 
-const NormalIcon = styled(CheckIcon)(({ theme }) => ({
-  color: theme.palette.success.main,
-  fontSize: '1.5rem',
-  marginRight: '0.5rem'
-}))
+import AlertIcon from 'ui/icons/Alert'
+import NormalIcon from 'ui/icons/Normal'
 
 const RunningContainer = styled('div')({
   display: 'flex',

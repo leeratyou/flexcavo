@@ -1,7 +1,6 @@
 import React, { FC } from 'react'
 
 import { DataGrid, GridColDef, GridValueGetterParams, GridRenderCellParams } from '@mui/x-data-grid'
-import { GridRowModel } from '@mui/x-data-grid/models/gridRows'
 import Typography from '@mui/material/Typography'
 
 import { getDataFilters, useGetTelematicData } from 'services/api'
