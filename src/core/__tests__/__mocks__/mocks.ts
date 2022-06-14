@@ -1,4 +1,4 @@
-import { GET_DATA } from 'services/api'
+import { GET_DATA } from 'services/api/telematic/gql'
 
 export const getDataMock = [
   {

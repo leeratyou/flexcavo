@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import React from 'react'
 import { GridRenderCellParams } from '@mui/x-data-grid'
 import Tooltip from '@mui/material/Tooltip'
 import { styled } from '@mui/material/styles'

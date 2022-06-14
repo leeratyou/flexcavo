@@ -4,7 +4,7 @@ import { MockedProvider } from '@apollo/client/testing'
 import { renderHook } from '@testing-library/react-hooks'
 
 import Dashboard from 'pages/Dashboard'
-import { getDataMock } from 'core/__tests__/mocks'
+import { getDataMock } from 'core/__tests__/__mocks__/mocks'
 import { useGetTelematicData } from 'services/api'
 import CombinedContext from 'context/CombinedContext'
 
